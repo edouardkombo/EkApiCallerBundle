@@ -50,7 +50,7 @@ class ApiCallerHelper
      * 
      * @param \EdouardKombo\PhpObjectsContractBundle\Contract\SetGetCOntract        $setGetContract SetGet Contrat
      * @param array                                                                 $parameters     EkApiCaller parameters config
-     * @param \EdouardKombo\PhpObjectsContractBundle\Firewall\ApiCallerFirewall     $firewall       Class that throws exceptions
+     * @param \EdouardKombo\PhpObjectsContractBundle\Contract\FirewallContract      $firewall       Class that throws exceptions
      * @param \EdouardKombo\PhpObjectsContractBundle\Contract\CommunicationCOntract $comm           Communication Contract
      */
     public function __construct($setGetContract, $parameters, $firewall, $comm)

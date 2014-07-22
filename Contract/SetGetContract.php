@@ -93,7 +93,7 @@ class SetGetContract extends SetGetAbstractions
     /**
      * Constructor
      * 
-     * @param \EdouardKombo\EkApiCallerBundle\Firewall\ApiCallerFirewall Firewall class
+     * @param \EdouardKombo\EkApiCallerBundle\Contract\FirewallContract Firewall class
      */
     public function __construct($firewall)
     {
