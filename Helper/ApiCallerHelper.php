@@ -173,7 +173,7 @@ class ApiCallerHelper
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, $c->connectTimeout);
         curl_setopt($handle, CURLOPT_TIMEOUT       , $c->timeout);
-        if (false !== $c->headers) {
+        if (is_array($c->headers) && !empty($c->headers)) {
             curl_setopt($handle, CURLOPT_HTTPHEADER,     $c->headers);
         }
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, $c->verifySSLCertificates);

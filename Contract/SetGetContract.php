@@ -28,12 +28,11 @@ use EdouardKombo\PhpObjectsContractBundle\Contract\Elements\Abstractions\SetGetA
  */
 class SetGetContract extends SetGetAbstractions
 {
-    
     /**
      *
      * @var array
      */
-    public $headers = false;
+    public $headers = array();
     
     /**
      *
