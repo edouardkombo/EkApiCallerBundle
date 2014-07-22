@@ -1,0 +1,3 @@
+ek_api_caller_homepage:
+    path:     /
+    defaults: { _controller: EkApiCallerBundle:Default:index }

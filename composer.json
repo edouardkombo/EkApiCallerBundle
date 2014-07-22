@@ -1,0 +1,27 @@
+{
+    "name": "edouardkombo/ek-api-caller-bundle",
+    "type": "bundle",
+    "description": "cURL API call functionality to communicate easily with any web api.",
+    "keywords": ["Ek Api Caller Bundle","Api Caller","Curl api Caller"],
+    "homepage": "https://github.com/edouardkombo/EkApiCallerBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edouard Kombo",
+            "email": "edouard.kombo@gmail.com",
+            "homepage": "http://creativcoders.wordpress.com",
+            "role": "Developer"
+        }
+    ],    
+    "require": {
+        "php": ">=5.3.0",
+        "edouardkombo/php-objects-contract-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "EdouardKombo\\EkApiCallerBundle\\": ""
+        }
+    },
+    "target-dir":"EdouardKombo/EkApiCallerBundle",      
+    "minimum-stability": "dev"    
+}
