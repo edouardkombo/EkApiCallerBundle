@@ -109,7 +109,7 @@ class SetGetContract extends SetGetAbstractions
      */
     public function set($value)
     {
-        $this->firewall->checkIfPropertyExists($this->cursor, $this);
+        $this->secure();
         
         $this->{$this->cursor} = $value;  
         
@@ -123,8 +123,19 @@ class SetGetContract extends SetGetAbstractions
      */
     public function get()
     {
-        $this->firewall->checkIfPropertyExists($this->cursor, $this);
+        $this->secure();
+        
         return $this->{$this->cursor};        
+    }
+    
+    /**
+     * Secure by checking properties existence
+     * 
+     * @return mixed
+     */
+    public function secure()
+    {
+        return $this->firewall->checkIfPropertyExists($this->cursor, $this);
     }
     
 }

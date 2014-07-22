@@ -2,17 +2,17 @@ parameters:
     ek_api_caller.contract.setget.class: EdouardKombo\EkApiCallerBundle\Contract\SetGetContract
     ek_api_caller.contract.communication.class: EdouardKombo\EkApiCallerBundle\Contract\CommunicationContract
     ek_api_caller.contract.http.class: EdouardKombo\EkApiCallerBundle\Contract\HttpContract     
-    ek_api_caller.firewall.api_caller.class: EdouardKombo\EkApiCallerBundle\Firewall\ApiCallerFirewall     
+    ek_api_caller.contract.firewall.class: EdouardKombo\EkApiCallerBundle\Contract\FirewallContract     
     ek_api_caller.helper.api_caller.class: EdouardKombo\EkApiCallerBundle\Helper\ApiCallerHelper     
 
 services:
     ek_api_caller.contract.setget:
         class: %ek_api_caller.contract.setget.class%
         arguments:
-            - @ek_api_caller.firewall.api_caller
+            - @ek_api_caller.contract.firewall
 
-    ek_api_caller.firewall.api_caller:
-        class: %ek_api_caller.firewall.api_caller.class%
+    ek_api_caller.contract.firewall:
+        class: %ek_api_caller.contract.firewall.class%
 
     ek_api_caller.contract.communication:
         class: %ek_api_caller.contract.communication.class%             
@@ -27,5 +27,5 @@ services:
         arguments: 
             - @ek_api_caller.contract.setget
             - %ek_api_caller.params%
-            - @ek_api_caller.firewall.api_caller
+            - @ek_api_caller.contract.firewall
             - @ek_api_caller.contract.communication

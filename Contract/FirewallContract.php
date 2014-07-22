@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * @category  Firewall
+ * @category  Contract
  * @package   EkApiCallerBundle
  * @author    Edouard Kombo <edouard.kombo@gmail.com>
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
@@ -13,20 +13,22 @@
  * @link      http://creativcoders.wordpress.com
  * @since     0.0.0
  */
-namespace EdouardKombo\EkApiCallerBundle\Firewall;
+namespace EdouardKombo\EkApiCallerBundle\Contract;
+
+use EdouardKombo\PhpObjectsContractBundle\Contract\Elements\Abstractions\FirewallAbstractions;
 
 use EdouardKombo\EkApiCallerBundle\Exception\CurlException;
 
 /**
  * Api Caller Firewall
  *
- * @category Firewall
+ * @category Contract
  * @package  EkApiCallerBundle
  * @author   Edouard Kombo <edouard.kombo@gmail.com>
  * @license  http://www.opensource.org/licenses/mit-license.php MIT License
  * @link     http://creativcoders.wordpress.com
  */
-class ApiCallerFirewall
+class FirewallContract extends FirewallAbstractions
 {
     
     /**
@@ -119,5 +121,5 @@ class ApiCallerFirewall
         }     
         
         return array($response_decoded, $code);
-    }        
+    }   
 }
