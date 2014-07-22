@@ -70,14 +70,14 @@ class FirewallContract extends FirewallAbstractions
     /**
      * Show Curl Error
      * 
-     * @param type $error_number
-     * @param type $error_message
+     * @param mixed  $errorNumber  Curl error number
+     * @param string $errorMessage Curl error message
      * 
      * @throws CurlException
      */
-    public function handleCurlError($error_number, $error_message)
+    public function handleCurlError($errorNumber, $errorMessage)
     {
-        switch ($error_number) {
+        switch ($errorNumber) {
             case CURLE_COULDNT_CONNECT:
             case CURLE_COULDNT_RESOLVE_HOST:
             case CURLE_OPERATION_TIMEOUTED:
@@ -93,8 +93,8 @@ class FirewallContract extends FirewallAbstractions
                 $message = 'Unexpected error communicating with API.';
                 break;
         }
-        $exception  = 'Curl network error #' . $error_number . ': ' . $message;
-        $exception .= ' (' . $error_message . ')';
+        $exception  = 'Curl network error #' . $errorNumber . ': ' . $message;
+        $exception .= ' (' . $errorMessage . ')';
         
         throw new CurlException($exception);
     }   
@@ -111,7 +111,7 @@ class FirewallContract extends FirewallAbstractions
     public function getResponse($response, $code)
     {
         try {
-            $response_decoded = json_decode($response, true);
+            $decodedResponse = json_decode($response, true);
             
         } catch (CurlException $e) {
             $message  = "Invalid body API response (HTTP code ' . $code . '): ";
@@ -120,6 +120,6 @@ class FirewallContract extends FirewallAbstractions
             throw new CurlException($message);
         }     
         
-        return array($response_decoded, $code);
+        return array($decodedResponse, $code);
     }   
 }
