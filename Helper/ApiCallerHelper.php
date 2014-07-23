@@ -116,11 +116,17 @@ class ApiCallerHelper
     {
         $url            = $this->setGetContract->url;
         $datas          = $this->setGetContract->datas;
+        $customRequest  = $this->setGetContract->customRequest;
         $encodedDatas   = $this->encodeDatas($datas);
         $handle         = curl_init($url);
        
-        $nUrl = $this->curlMethodSetopt($url, $datas, $encodedDatas, $handle, 
-                $method);       
+        if (!empty($customRequest)) {
+             $nUrl = $this->curlCustomMethod($customRequest, $handle, $method);              
+        } else {
+            $nUrl = $this->curlMethodSetopt($url, $datas, $encodedDatas, $handle, 
+                    $method);               
+        }
+    
         
         $this->setGetContract->cursor = 'url';
         $this->setGetContract->set($nUrl);
@@ -179,5 +185,43 @@ class ApiCallerHelper
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, $c->verifySSLCertificates);
         
         return $newUrl;
-    }       
+    }
+    
+    /**
+     * Custom curl request
+     * 
+     * @param string $url          Url to target
+     * @param mixed  $handle       Curl url return
+     * @param string $method       Http method
+     * 
+     * @return string
+     */
+    private function curlCustomMethod($url, $handle, $method)
+    {
+        $c = $this->setGetContract;
+        
+        if ($method === 'get') {
+            curl_setopt($handle, CURLOPT_HTTPGET, 1);
+            
+        } else if ($method === 'post') {
+            curl_setopt($handle, CURLOPT_POST, 1);
+            curl_setopt($handle, CURLOPT_POSTFIELDS, '');
+            
+        } else if ($method === 'delete') {
+            curl_setopt($handle, CURLOPT_CUSTOMREQUEST, 'DELETE'); 
+        }         
+        
+        curl_setopt($handle, CURLOPT_FRESH_CONNECT,  $c->cache);
+        curl_setopt($handle, CURLOPT_URL,            $url);
+        curl_setopt($handle, CURLOPT_HEADER,         0);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, $c->connectTimeout);
+        curl_setopt($handle, CURLOPT_TIMEOUT       , $c->timeout);
+        if (is_array($c->headers) && !empty($c->headers)) {
+            curl_setopt($handle, CURLOPT_HTTPHEADER,     $c->headers);
+        }
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, $c->verifySSLCertificates);
+        
+        return $url;
+    }    
 }

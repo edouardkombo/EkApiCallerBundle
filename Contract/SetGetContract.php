@@ -86,7 +86,13 @@ class SetGetContract extends SetGetAbstractions
      *
      * @var object 
      */
-    private $firewall = '';     
+    private $firewall = '';
+    
+    /**
+     *
+     * @var string 
+     */
+    private $customRequest = '';    
     
     
     /**
