@@ -80,13 +80,7 @@ class SetGetContract extends SetGetAbstractions
      *
      * @var string 
      */
-    public $cursor = ''; 
-    
-    /**
-     *
-     * @var string 
-     */
-    public $customRequest = '';      
+    public $cursor = '';    
     
     /**
      *
