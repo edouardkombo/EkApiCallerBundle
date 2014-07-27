@@ -53,10 +53,7 @@ class HttpContract extends HttpAbstractions
      */
     public function setParameter($property, $value)
     {
-        $setGetContract = $this->helper->setGetContract;      
-        
-        $setGetContract->cursor = $property;
-        $setGetContract->set($value);
+        $this->helper->setGetContract->setparameter($property, $value);      
         
         return $this;
     }    

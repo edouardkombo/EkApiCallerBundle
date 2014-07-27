@@ -100,6 +100,22 @@ class SetGetContract extends SetGetAbstractions
     }
     
     /**
+     * Check if property exists and set the value to the property
+     * 
+     * @param string $property Property we want to reach
+     * @param mixed  $value    Value to assign to the property
+     * 
+     * @return \EdouardKombo\EkStripePaymentBundle\Contract\SetGetContract
+     */
+    public function setParameter($property, $value)
+    {
+        $this->cursor = $property;
+        $this->set($value);
+        
+        return $this;
+    }    
+    
+    /**
      * Set a value
      * 
      * @param mixed $value Value to be setted
